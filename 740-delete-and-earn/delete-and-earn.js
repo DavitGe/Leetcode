@@ -8,7 +8,6 @@ var deleteAndEarn = function (nums) {
         if (arr[x]) arr[x]++
         else arr[x] = 1
     }
-    // console.log(arr,arr[0])
     let al = arr.length
     let money = []
     for (let i = 0; i < al; i++) {
@@ -19,7 +18,6 @@ var deleteAndEarn = function (nums) {
             money[i] = i * arr[i]
         }
     }
-    // console.log(money)
     if (money[1] < money[0]) money[1] = money[0]
     for (let i = 2; i < al; i++) {
         if (money[i] + money[i - 2] > money[i - 1]) {
