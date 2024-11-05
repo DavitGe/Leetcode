@@ -5,25 +5,21 @@
  */
 
 var maximumScore = function (nums, multipliers) {
-    var score = 0;
-    var n = nums.length;
-    var m = multipliers.length;
-    var memo = Array.from({ length: m }, () => Array(m + 1).fill(undefined));
+    const n = nums.length;
+    const m = multipliers.length;
+    const dp = Array.from({ length: m + 1 }, () => Array(m + 1).fill(0));
 
-    function dp(i, left) {
-        if (i == m) {
-            return 0;
+    for (let i = m - 1; i >= 0; i--) {
+        for (let left = i; left >= 0; left--) {
+            const mult = multipliers[i];
+            const right = n - 1 - (i - left);
+            dp[i][left] = Math.max(
+                mult * nums[left] + dp[i + 1][left + 1],
+                mult * nums[right] + dp[i + 1][left]
+            );
         }
-        var mult = multipliers[i];
-        var right = n - 1 - (i - left);
-        if (memo[i][left] === undefined) {
-            memo[i][left] = Math.max(mult * nums[left] + dp(i + 1, left + 1),
-                mult * nums[right] + dp(i + 1, left));
-        }
-        return memo[i][left];
     }
-    return dp(0, 0);
 
-
+    return dp[0][0];
 };
 
