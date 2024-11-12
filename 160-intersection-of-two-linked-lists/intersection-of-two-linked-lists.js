@@ -12,14 +12,17 @@
  * @return {ListNode}
  */
 var getIntersectionNode = function (headA, headB) {
-    if (headA === null || headB === null) {
-        return null;
+    let p = headA;
+    let q = headB;
+    
+    while(p!=q && ( p.next || q.next)){
+        if(p.next == null) p = headB;
+        else   p=p.next;
+        if(q.next == null) q= headA;
+        else q=q.next;
+      
+        
     }
-    let pointerA = headA;
-    let pointerB = headB;
-    while (pointerA !== pointerB) {
-        pointerA = pointerA === null ? headA : pointerA.next;
-        pointerB = pointerB === null ? headB : pointerB.next;
-    }
-    return pointerA;
+    // console.log(q.val)
+    if(p==q) return p;
 };
