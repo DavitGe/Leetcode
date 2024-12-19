@@ -3,23 +3,19 @@
  * @return {number[]}
  */
 var sortedSquares = function (nums) {
-    var res = [];
-    nums.forEach((el, i) => {
-        const sq = el ? el * el : 0;
-        for (var index = 0; index < res.length; index++) {
-            if (sq < res[index]) {
-                res = [
-                    ...res.slice(0, index),
-                    sq,
-                    ...res.slice(index)
-                ]
-                index = res.length;
-            }
-        }
+    let start = 0;
+    let end = nums.length - 1;
+    let idx = end;
+    let sortPowArr = [];
 
-        if (res.length == i) {
-            res.push(sq);
+    while (idx > -1) {
+        if (Math.abs(nums[start]) > Math.abs(nums[end])) {
+            sortPowArr[idx--] = nums[start] * nums[start];
+            start++;
+        } else {
+            sortPowArr[idx--] = nums[end] * nums[end];
+            end--;
         }
-    })
-    return res
+    }
+    return sortPowArr;
 };
