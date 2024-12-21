@@ -10,7 +10,7 @@ var validMountainArray = function (arr) {
         return false;
     }
 
-    for (let i = 1; i < len; i++) {
+    for (var i = 1; i < len; i++) {
         if(arr[i-1] == arr[i]){
             return false;
         }
