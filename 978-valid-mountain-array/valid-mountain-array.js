@@ -11,8 +11,8 @@ var validMountainArray = function (arr) {
     }
 
     for (let i = 1; i < len; i++) {
-        if(arr[i - 1] == arr[i]){
-            return false
+        if(arr[i-1] == arr[i]){
+            return false;
         }
         if(isIncreasing){
             if(arr[i - 1] > arr[i]){
@@ -24,7 +24,7 @@ var validMountainArray = function (arr) {
             }else{
                 increased = true;
             }
-        } else if (arr[i - 1] < arr[i]) {
+        } else if (arr[i - 1] <= arr[i]) {
             return false;
         }
     }
