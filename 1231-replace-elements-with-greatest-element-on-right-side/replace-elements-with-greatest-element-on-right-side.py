@@ -1,20 +1,15 @@
-class Solution(object):
+class Solution:
     def replaceElements(self, arr):
-        currentGreatestI = 0
-        length = len(arr)
-        for x in range(0, length):
-            if x >= len(arr) - 1:
-                arr[x] = -1
-                break
-            if x >= currentGreatestI:
-                tempGreatest = x + 1
-                for i in range(x + 1, length):
-                    if(arr[i] >= arr[tempGreatest]):
-                        tempGreatest = i
-                currentGreatestI = tempGreatest
-            arr[x] = arr[currentGreatestI]
+        n = len(arr)
+        maxRight = -1  # Initialize the maximum element on the right as -1
+
+        # Traverse the array from right to left
+        for i in range(n - 1, -1, -1):
+            # Store the current element before it gets overwritten
+            current = arr[i]
+            # Replace the current element with the max element to its right
+            arr[i] = maxRight
+            # Update the maxRight with the maximum of current and maxRight
+            maxRight = max(maxRight, current)
         
         return arr
-            
-
-        
